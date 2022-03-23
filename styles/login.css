@@ -43,7 +43,8 @@
    flex-direction: column;
 }
 
-input {
+.enseignant__form input,
+.etudiant__form input {
    padding: 10px;
    margin-bottom: 20px;
    border-radius: 5px;

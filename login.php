@@ -14,7 +14,7 @@
    $error = '';
    $errorEnseignant = '';
 
-   if (isset($_POST['email']) && isset($_POST['email']) && isset($_POST['type'])) {
+   if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['type'])) {
       $type = $_POST['type'];
       if ($type === "etudiant") {
          $result = $conn->query("select * from Etudiant WHERE email='$_POST[email]' and password='$_POST[password]'" );
@@ -27,6 +27,7 @@
             $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['image'] = $row['image'];
             $_SESSION['date_naissance'] = $row['date_naissance'];
+            $_SESSION['id_classe'] = $row['id_classe'];
             header('Location: etudiantPage.php' );
          }else{
             $error="email ou password est incorrect!!";
@@ -35,8 +36,14 @@
       } else {
          $result = $conn->query("select * from Enseignant WHERE email='$_POST[email]' and password='$_POST[password]'" );
          if (mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
             $_SESSION['type'] = 'enseignant';
-            $_SESSION['email'] = $_POST['email'];
+            $_SESSION['id_enseignant'] = $row['id_enseignant'];
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['nom'] = $row['nom'];
+            $_SESSION['prenom'] = $row['prenom'];
+            $_SESSION['image'] = $row['image'];
+            $_SESSION['date_naissance'] = $row['date_naissance'];
             header('Location: enseignantPage.php' );
          }else{
             $error="email ou password est incorrect!!";

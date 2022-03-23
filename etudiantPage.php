@@ -9,18 +9,43 @@
    }else{
       header('Location: login.php');
    }
-
 ?>
 
 <?php  include './header.php' ?>
 
-<?php
-   
+<?php include 'layouts/navbar.php';?>
 
-   include 'layouts/navbar.php';
+<?php
+
+   include './database/connection.php';
+
+   $id_etudiant = $_SESSION['id'];
+   $id_classe = $_SESSION['id_classe'];
+
+   $resultat = $conn->query("select m.nom, n.note from Matiere m LEFT JOIN Note n ON m.id_matiere = n.id_matiere AND m.id_classe = $id_classe");
+
+
 
 ?>
 
-<h1>etudiant page</h1>
+<table border="1">
+   <tr>
+      <th>matiere</th>
+      <th>note</th>
+   </tr>
+   <?php
+      if ($resultat) {
+         while($row = mysqli_fetch_assoc($resultat)){
+            echo "<tr>
+               <td>$row[nom]</td>
+               <td>$row[note]</td>
+            </tr>";
+         }
+      }
+   ?>
+
+</table>
+
+
 
 <?php  include './footer.php' ?>

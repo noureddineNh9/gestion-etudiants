@@ -19,6 +19,7 @@
    if ($res) {
       $row = mysqli_fetch_assoc($res);
       print_r($row);
+      echo "<p></p>";
    }
 
 

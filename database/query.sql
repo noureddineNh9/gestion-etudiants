@@ -3,7 +3,7 @@ DROP DATABASE IF EXISTS gestion_etudiants_db;
 CREATE DATABASE gestion_etudiants_db;
 
  create table Classe(
-     id_classe int primary key,
+     id_classe int primary key AUTO_INCREMENT,
      nom varchar(25) not null
 
  );
@@ -16,11 +16,11 @@ create table Etudiant(
      date_naissance date not null,
      email varchar(50) not null unique,
      password varchar(50) not null,
-     image varchar(255) ,
+     image varchar(255),
      id_classe int,
      FOREIGN key(id_classe) REFERENCES Classe(id_classe) 
 
- );
+);
 
 
 CREATE TABLE Enseignant(
