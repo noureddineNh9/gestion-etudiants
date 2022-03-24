@@ -30,3 +30,12 @@ th,
 td {
    padding: 15px;
 }
+
+.container {
+   padding: 20px;
+}
+
+.matiere__titre {
+   font-size: 30px;
+   margin-bottom: 15px;
+}

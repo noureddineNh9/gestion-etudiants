@@ -21,8 +21,8 @@
          if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
             $_SESSION['type'] = 'etudiant';
-            $_SESSION['id'] = $_POST['id'];
-            $_SESSION['email'] = $_POST['email'];
+            $_SESSION['id_etudiant'] = $row['id_etudiant'];
+            $_SESSION['email'] = $row['email'];
             $_SESSION['nom'] = $row['nom'];
             $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['image'] = $row['image'];
