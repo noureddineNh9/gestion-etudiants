@@ -48,6 +48,17 @@ CREATE TABLE Note(
    note float,
    id_matiere int not null,
    id_etudiant int not null,
-   FOREIGN KEY(id_matiere) REFERENCES Matiere(id_matiere), 
+   FOREIGN KEY(id_matiere) REFERENCES Matiere(id_matiere) , 
    FOREIGN KEY(id_etudiant) REFERENCES Etudiant(id_etudiant)
 );
+
+
+-- 
+
+ALTER TABLE Note 
+DROP CONSTRAINT `constaint_name`;
+
+ALTER TABLE Note 
+ADD FOREIGN KEY(id_matiere) REFERENCES Matiere(id_matiere) ON DELETE CASCADE;
+
+
