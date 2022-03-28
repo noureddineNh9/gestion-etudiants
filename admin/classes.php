@@ -25,8 +25,8 @@
 
 
       <form action="" method="POST">
-         <input type="text" name="nom" required>
-         <input type="submit" name="submit" value="Ajouter Classe">
+         <input class="form__input" type="text" name="nom" required>
+         <input class="button__1" type="submit" name="submit" value="Ajouter Classe">
       </form>
 
 
