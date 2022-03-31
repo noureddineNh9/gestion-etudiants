@@ -1,0 +1,80 @@
+.field {
+   width: 650px;
+   background-color: white;
+   border: none;
+   border-radius: 15px;
+   box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
+      rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
+}
+
+.form-container {
+   display: grid;
+   align-items: center;
+   justify-content: center;
+   margin: 50px 0;
+}
+
+.field form {
+   display: grid;
+   grid-template-columns: 1fr;
+}
+
+.position_lab {
+   display: grid;
+   grid-template-columns: 1fr;
+   width: 600px;
+   margin: 25px;
+}
+
+.content_sub {
+   width: 100%;
+   display: flex;
+   gap: 15px;
+   justify-content: center;
+   margin-top: 15px;
+}
+
+.dt {
+   margin-top: -5px;
+}
+
+.form__inscription input[type="text"] {
+   margin-top: 7px;
+   border: none;
+   text-align: center;
+   padding: 10px 15px;
+   color: #808080;
+   border-radius: 12px;
+   box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+}
+
+.form__inscription input[type="text"]:focus {
+   outline: 2px #ccc solid;
+}
+
+.form__inscription input[type="date"] {
+   width: 300px;
+   margin-left: 50px;
+   padding: 4px 10px;
+   border: none;
+   border-radius: 15px;
+   box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+   color: #808080;
+   text-align: center;
+}
+
+.form__inscription input[type="date"]:focus {
+   outline: 2px #ccc solid;
+}
+
+.field img {
+   width: 100px;
+   height: 100px;
+   border-radius: 50%;
+   margin-top: 20px;
+}
+
+.avatar {
+   width: 60px;
+   height: 60px;
+}

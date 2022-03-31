@@ -3,9 +3,9 @@
    session_start();
    if (isset($_SESSION['type']) && isset($_SESSION['email'])) {
       if($_SESSION['type'] == 'etudiant'){
-         header('Location: etudiantPage.php');
+         header('Location: etudiant/index.php');
       }else if($_SESSION['type'] == 'enseignant'){
-         header('Location: enseignantPage.php');
+         header('Location: enseignant/index.php');
       }
    }
 
@@ -28,7 +28,7 @@
             $_SESSION['image'] = $row['image'];
             $_SESSION['date_naissance'] = $row['date_naissance'];
             $_SESSION['id_classe'] = $row['id_classe'];
-            header('Location: etudiantPage.php' );
+            header('Location: etudiant/index.php' );
          }else{
             $error="email ou password est incorrect!!";
          }
@@ -44,7 +44,7 @@
             $_SESSION['prenom'] = $row['prenom'];
             $_SESSION['image'] = $row['image'];
             $_SESSION['date_naissance'] = $row['date_naissance'];
-            header('Location: enseignantPage.php' );
+            header('Location: enseignant/index.php' );
          }else{
             $error="email ou password est incorrect!!";
          }

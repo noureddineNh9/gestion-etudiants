@@ -4,17 +4,17 @@
       if($_SESSION['type'] == 'enseignant'){
 
       }else{
-         header('Location: login.php');
+         header('Location: ../login.php');
       }
    }else{
-      header('Location: login.php');
+      header('Location: ../login.php');
    }
 
 ?>
 
 <?php  include './header.php' ?>
 
-<?php include 'layouts/navbarEnseignant.php'; ?>
+<?php include 'navbar.php'; ?>
 
 <div class="container">
 

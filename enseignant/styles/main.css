@@ -1,12 +1,3 @@
-.form__input {
-   outline: none;
-   padding: 5 px;
-   border: 1px solid rgb(138, 138, 138);
-   background-color: white;
-   border-radius: 4px;
-   width: 100%;
-}
-
 .classes__nav {
    width: 240px;
    position: fixed;
@@ -15,7 +6,8 @@
    height: 100vh;
 }
 
-.classes__list {
+.margin {
+   margin-left: 280px;
 }
 
 .classes__item {
@@ -33,4 +25,10 @@
 
 .classe__container {
    margin-left: 240px;
+}
+
+.modifie {
+   width: 77px;
+   display: flex;
+   justify-content: space-between;
 }

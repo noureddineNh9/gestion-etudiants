@@ -1,0 +1,217 @@
+@import "./inscription.css";
+
+body {
+   background-color: rgb(248, 248, 248);
+}
+
+.form__input {
+   outline: none;
+   padding: 5 px;
+   border: 1px solid rgb(138, 138, 138);
+   background-color: white;
+   border-radius: 4px;
+   width: 100%;
+}
+
+.classes__nav {
+   width: 240px;
+   position: fixed;
+   left: 0;
+   background: #eee;
+   height: 100vh;
+}
+
+.classes__list {
+}
+
+.classes__item {
+   padding: 10px 15px;
+   cursor: pointer;
+   margin: 8px 10px;
+   border-radius: 5px;
+
+   transition: all 0.25s;
+}
+.classes__item:hover,
+.classes__item.active {
+   background-color: #2562961f;
+}
+
+.classe__container {
+   margin-left: 240px;
+}
+
+/* *************************** */
+* {
+   padding: 0;
+   margin: 0;
+}
+
+a {
+   text-decoration: none;
+   color: black;
+   font-size: 18px;
+}
+
+#img_prof {
+   width: 50px;
+   height: 50px;
+   margin-left: 20px;
+   border-radius: 50%;
+}
+
+.navbar {
+   display: flex;
+   height: 70px;
+   align-items: center;
+   gap: 30px;
+   background-color: white;
+   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+      rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+.navbar__list {
+   display: inline-flex;
+   align-items: center;
+   gap: 30px;
+}
+
+.dropdown-content {
+   display: none;
+   position: absolute;
+   background-color: #f9f9f9;
+   min-width: 160px;
+   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+   z-index: 1;
+}
+
+.dropdown-content a {
+   float: none;
+   color: black;
+   padding: 12px 16px;
+   text-decoration: none;
+   display: block;
+   text-align: left;
+}
+
+.dropdown-content a:hover {
+   background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+   display: block;
+}
+
+.dropbtn {
+   background-color: transparent;
+   border: none;
+   font-size: 16px;
+   padding-top: 1.5px;
+}
+
+/*  ******************* */
+
+.table__inscription {
+   margin-top: 10px;
+   width: 90vw;
+   border-radius: 5px;
+   border-collapse: collapse;
+}
+
+.tab_container {
+   width: 100%;
+   display: grid;
+   justify-content: center;
+}
+
+.table__inscription th {
+   padding: 15px 15px;
+   font-size: 16px;
+   font-weight: 500;
+   text-transform: capitalize;
+   display: table-cell;
+   border: none;
+}
+
+.th-style {
+   background-color: #36304a;
+   color: white;
+}
+
+.table__inscription td {
+   padding: 12px 15px;
+   text-align: center;
+   background-color: #f5f5f5;
+   color: #808080;
+}
+
+.img-pf {
+   width: 60px;
+   height: 60px;
+   border-radius: 50%;
+}
+
+.btn_ajout {
+   width: 150px;
+   border: 1px solid black;
+   padding: 10px;
+   margin: 10px 0px;
+   border-radius: 10px;
+   font-weight: bold;
+   float: right;
+   background-color: #36304a;
+   color: white;
+   transition: all 0.3s;
+}
+
+.btn_ajout:hover,
+.recherch:hover {
+   color: #36304a;
+   background-color: #ffffff;
+   transform: scaleX(1.05);
+   outline: 1px solid;
+}
+
+.header_ajout {
+   width: 100%;
+}
+
+.recherch {
+   width: 400px;
+   border: 1px solid black;
+   padding: 10px;
+   margin: 10px 0px;
+   border-radius: 10px;
+   font-weight: bold;
+   background-color: white;
+   color: gray;
+   transition: transform 0.4s;
+}
+
+.search {
+   width: max-content;
+   position: relative;
+}
+
+.search button {
+   position: absolute;
+   top: 20px;
+   right: 10px;
+   outline: none;
+   border: none;
+   background-color: transparent;
+}
+
+.search i {
+   color: black;
+   font-size: 20px;
+}
+
+.search i:hover {
+   color: blue;
+}
+
+.recherch:hover ~ .search button a i {
+   font-size: 30px !important;
+   color: white !important;
+}

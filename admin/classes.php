@@ -1,26 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php include './header.php'; ?>
+<?php include './navbar.php'; ?>
 
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>Document</title>
-
-
-   <link rel="preconnect" href="https://fonts.googleapis.com">
-   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-   <link
-      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
-      rel="stylesheet">
-
-   <link rel="stylesheet" href="../styles/main.css">
-</head>
-
-<body>
-
-
-   <?php 
+<?php 
       include '../database/connection.php';
 
 
@@ -90,32 +71,32 @@
    ?>
 
 
-   <?php
+<?php
       $enseignantResutat = $conn->query("SELECT * FROM Enseignant");
       $classesResultat = $conn->query('SELECT * FROM Classe'); 
    ?>
 
-   <!--- Navbar --->
-   <div class="classes__nav">
-      <div class="p-2">
-         <form class="flex" action="" method="POST">
-            <input class="form__input mr-2" type="text" name="nom" required>
-            <button class="button__1" type="submit" name="submit" value="Ajouter Classe">
-               ajouter
-            </button>
-         </form>
-      </div>
-      <ul class="classes__list">
-         <?php
+<!--- Navbar --->
+<div class="classes__nav">
+   <div class="p-2">
+      <form class="flex" action="" method="POST">
+         <input class="form__input mr-2" type="text" name="nom" required>
+         <button class="button__1" type="submit" name="submit" value="Ajouter Classe">
+            ajouter
+         </button>
+      </form>
+   </div>
+   <ul class="classes__list">
+      <?php
             while($row = mysqli_fetch_assoc($classesResultat)){
                echo "<div id='classe$row[id_classe]' class='classes__item'>$row[nom]</div>";
             }
          ?>
-      </ul>
-   </div>
+   </ul>
+</div>
 
-   <main class="classe__container">
-      <?php
+<main class="classe__container">
+   <?php
          $classesResultat->data_seek(0);
          if ($classesResultat) {
             while($row = mysqli_fetch_assoc($classesResultat)){
@@ -186,43 +167,43 @@
       ?>
 
 
-   </main>
+</main>
 
-   <script>
-   const classesButtons = document.querySelectorAll('.classes__item');
-   const classesContent = document.querySelectorAll('.classe__content');
+<script>
+const classesButtons = document.querySelectorAll('.classes__item');
+const classesContent = document.querySelectorAll('.classe__content');
 
-   function displayClasse(id_classe) {
-      classesButtons.forEach((btn) => {
-         if (btn.getAttribute('id') === id_classe) {
-            btn.classList.add('active')
-         } else {
-            btn.classList.remove('active')
-         }
-      })
-
-      classesContent.forEach(elem => {
-         console.log(elem);
-         if (elem.getAttribute('classe-id') == id_classe) {
-            elem.classList.remove('hidden')
-         } else {
-            elem.classList.add('hidden')
-
-         }
-      })
-   }
-
-
-   classesButtons.forEach(button => {
-      button.addEventListener('click', (e) => {
-         classeId = e.target.id
-
-         displayClasse(classeId)
-      })
+function displayClasse(id_classe) {
+   classesButtons.forEach((btn) => {
+      if (btn.getAttribute('id') === id_classe) {
+         btn.classList.add('active')
+      } else {
+         btn.classList.remove('active')
+      }
    })
-   </script>
 
-   <?php
+   classesContent.forEach(elem => {
+      console.log(elem);
+      if (elem.getAttribute('classe-id') == id_classe) {
+         elem.classList.remove('hidden')
+      } else {
+         elem.classList.add('hidden')
+
+      }
+   })
+}
+
+
+classesButtons.forEach(button => {
+   button.addEventListener('click', (e) => {
+      classeId = e.target.id
+
+      displayClasse(classeId)
+   })
+})
+</script>
+
+<?php
             if (isset($_GET['id_classe'])) {
                $id_classe = "classe".$_GET['id_classe'];
                echo "<script>
@@ -232,6 +213,4 @@
 
    ?>
 
-</body>
-
-</html>
+<?php include './footer.php'; ?>

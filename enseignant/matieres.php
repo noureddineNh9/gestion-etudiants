@@ -10,7 +10,7 @@
       header('Location: login.php');
    }
 
-   include './database/connection.php';
+   include '../database/connection.php';
 
 
    if (isset($_POST['note']) AND isset($_POST['id_etudiant']) AND isset($_POST['id_note']) AND isset($_POST['id_matiere'])) {
@@ -48,29 +48,34 @@
 ?>
 
 <?php  include './header.php' ?>
+<?php include './navbar.php'; ?>
 
-<?php include 'layouts/navbarEnseignant.php'; ?>
-
-<div class="container">
-   <?php
-
-
+<!-- <div class="container"> -->
+<?php
    $id_enseignant = $_SESSION['id_enseignant'];
+   
+   $MatieresResultat = $conn->query("select m.id_matiere, m.nom , m.id_classe, c.nom as classeNom
+                                       from Matiere m join Classe c 
+                                    ON m.id_enseignant = $id_enseignant AND m.id_classe = c.id_classe ");
 
-   $MatieresResultat = $conn->query("select * from Matiere WHERE id_enseignant = $id_enseignant");
 
    if ($MatieresResultat) {
-   
+      echo "<div class=classes__nav>";
       while ($row = mysqli_fetch_assoc($MatieresResultat)) {
+         $id_classe=$row['id_classe'];
+         // requete pour le nom de chaque class!
+
          $id_matiere = $row['id_matiere'];
          $nom_matiere = $row['nom'];
+         // affichage chaque matiere
+         echo "<div class=classes__item id='$id_matiere'>$nom_matiere ( $row[classeNom])</div>";
+      }
+      echo "</div>";
+      $MatieresResultat->data_seek(0);
+      while ($row = mysqli_fetch_assoc($MatieresResultat)) {
+         $id_matiere = $row['id_matiere'];
+        
 
-         echo "<details>";
-
-         echo "<summary class='matiere__titre'>$nom_matiere</summary>";
-
-         //$notes = $conn->query("select n.note, e.id_etudiant, e.nom, e.prenom from Note n, Etudiant e, Classe c WHERE n.id_etudiant = e.id_etudiant AND n.id_matiere = $id_matiere");
-         
          $notesResultat = $conn->query("select a.id_etudiant, a.id_matiere, a.id_classe, a.nom, a.prenom, n.note, n.id_note 
                                  from (select m.id_matiere, m.id_classe, e.id_etudiant, e.nom, e.prenom
                                        from Etudiant e JOIN Matiere m 
@@ -79,22 +84,25 @@
                                  LEFT JOIN Note n 
                                  ON a.id_matiere = n.id_matiere 
                                  AND a.id_etudiant=n.id_etudiant");
-         if ($notesResultat) {
-            echo "<table border='1'>
+         if ($notesResultat){
+           
+                     
+             echo "<div class='margin hidden contenu' class-id='$id_matiere'>";
+            
+             echo "<h1>CLasse : $row[nom]  </h1>";
+             print_r($notesResultat);
+             echo "<table border='1'>
                   <tr>
-                     <th>id note</th>
-                     <th>id classe</th>
-                     <th>id etudiant</th>
+                     
+                      
                      <th>nom</th>
                      <th>prenom</th>
                      <th>note</th>
                      <th></th>
                   </tr>";
-            while ($row2 = mysqli_fetch_assoc($notesResultat)) {
+             while ($row2 = mysqli_fetch_assoc($notesResultat)) {
                echo "<tr>
-                  <td>$row2[id_note]</td>
-                  <td>$row2[id_classe]</td>
-                  <td>$row2[id_etudiant]</td>
+                
                   <td>$row2[nom]</td>
                   <td>$row2[prenom]</td>
                   <form method='POST' action=''>
@@ -102,21 +110,69 @@
                      <input hidden type='number' value='$row2[id_matiere]' name='id_matiere'/>
                      <input hidden type='number' value='$row2[id_etudiant]' name='id_etudiant'/>
                      <td><input type='number' value='$row2[note]' name='note'/></td>
-                     <td><input type='submit' value='modifier' name='modifier'/></td>
+                     
+                     <td>
+                       <div class=modifie>
+                         <button id=btn1 type=button  onclick='ajouter()'>
+                          <img class='h-6 w-6' src=../assets/icons/modifie.png>
+                         </button>
+                         <button   type='submit' value='' name='modifier'>
+                         <img class='h-6 w-6' src='../assets/icons/modif.png'>
+                        </button>
+                        </div>
+                           
+                     </td>
                   </form>
-               </tr>";
-            }
-            echo '</table>';
-
-            echo "</details>";
+                </tr>";
+             }
+             echo '</table>';
+             echo "</div>";
+        
          }
-         
       }
+    
+    
    }
 
 
 
 ?>
 
-</div>
+
 <?php  include './footer.php' ?>
+
+<script>
+const btnBar = document.querySelectorAll(".classes__item");
+const contenu = document.querySelectorAll(".contenu");
+
+btnBar.forEach(item => {
+   item.addEventListener("click", (e) => {
+      display(e.target.id);
+   });
+
+});
+
+function display(id) {
+   contenu.forEach(item => {
+      item.classList.add("hidden");
+      if (id == item.getAttribute("class-id")) {
+         item.classList.remove("hidden");
+      } else {
+         item.classList.add("hidden");
+      }
+
+
+   })
+}
+
+function ajouter() {
+
+   const btn1 = document.querySelector("#btn1");
+   const btnInput = document.querySelector(".fontFamily");
+
+
+   console.log(btnInput);
+
+
+}
+</script>
